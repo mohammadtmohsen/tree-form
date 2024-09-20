@@ -24,7 +24,7 @@ export const NestedCategories = ({
   });
 
   return (
-    <div>
+    <div className='flex flex-col gap-4'>
       {fields?.map((category, index) => {
         const currentIndex = nestIndex
           ? `${nestIndex}.categories.${index}`
@@ -33,7 +33,7 @@ export const NestedCategories = ({
         return (
           <div
             key={category.id}
-            className={`border p-4 ${getBackgroundColor(
+            className={`border rounded-lg p-4 ${getBackgroundColor(
               calculateLevel(nestIndex)
             )}`}
           >
