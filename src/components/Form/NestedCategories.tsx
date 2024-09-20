@@ -2,7 +2,7 @@ import { Control, Controller, useFieldArray } from 'react-hook-form';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { FormValue } from './Form.type';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import {
   calculateLevel,
   getBackgroundColor,
@@ -49,9 +49,9 @@ export const NestedCategories = ({
                 />
               )}
             />
-            <DeleteIcon type='button' onClick={() => remove(index)}>
-              Remove Category
-            </DeleteIcon>
+            <IconButton onClick={() => remove(index)}>
+              <DeleteIcon htmlColor='red' />
+            </IconButton>
             <NestedCategories control={control} nestIndex={currentIndex} />
           </div>
         );
