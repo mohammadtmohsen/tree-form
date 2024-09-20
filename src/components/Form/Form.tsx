@@ -24,8 +24,6 @@ export const Form: React.FC = () => {
         className='mt-10 flex flex-col gap-4'
       >
         <NestedCategories control={control} nestIndex='' />
-
-        <button type='submit'>Submit</button>
       </form>
       <pre className='text-left'>{JSON.stringify(categories, null, 2)}</pre>
     </div>
