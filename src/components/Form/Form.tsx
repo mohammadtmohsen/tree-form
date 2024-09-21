@@ -18,10 +18,10 @@ export const Form: React.FC = () => {
   const categories = watch('categories');
 
   return (
-    <div className='flex gap-10 items-start jus'>
+    <div className='flex gap-10 items-start justify-center'>
       <form
         onSubmit={handleSubmit((data) => console.log('data', data))}
-        className='mt-10 flex flex-col gap-4'
+        className='flex flex-col gap-4'
       >
         <NestedCategories control={control} nestIndex='' />
       </form>

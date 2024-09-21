@@ -8,6 +8,7 @@ import {
   getBackgroundColor,
   getPlaceholder,
 } from '../../utils/helper';
+import { useLimit } from '../../context';
 
 export const NestedCategories = ({
   control,
@@ -16,6 +17,8 @@ export const NestedCategories = ({
   nestIndex: string;
   control: Control<FormValue>;
 }) => {
+  const { limit } = useLimit();
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: nestIndex
@@ -56,9 +59,13 @@ export const NestedCategories = ({
           </div>
         );
       })}
-      <Button startIcon={<AddIcon />} onClick={() => append({ name: '' })}>
-        Add Category
-      </Button>
+      {fields?.length < limit ? (
+        <Button startIcon={<AddIcon />} onClick={() => append({ name: '' })}>
+          Add Category
+        </Button>
+      ) : (
+        <span>Limit Reached</span>
+      )}
     </div>
   );
 };
