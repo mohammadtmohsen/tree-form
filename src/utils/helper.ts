@@ -4,28 +4,28 @@ export const getPlaceholder = (currentIndex: string) => {
     .filter((item) => !isNaN(Number(item)))
     .map(Number)
     .join('.');
-  return levels;
+  return levels || 'root';
 };
 
-export const getBackgroundColor = (level: number) => {
-  const colors = [
-    'bg-red-900',
-    'bg-green-900',
-    'bg-blue-900',
-    'bg-yellow-900',
-    'bg-purple-900',
-    'bg-pink-900',
-    'bg-indigo-900',
-    'bg-teal-900',
-    'bg-cyan-900',
-    'bg-lime-900',
-    'bg-amber-900',
-    'bg-orange-900',
-    'bg-gray-900',
-  ];
-  return colors[level % colors.length];
+const LEVEL_COLORS = [
+  '#60a5fa', // blue
+  '#34d399', // emerald
+  '#fbbf24', // amber
+  '#f472b6', // pink
+  '#a78bfa', // violet
+  '#22d3ee', // cyan
+  '#fb7185', // rose
+  '#facc15', // yellow
+  '#4ade80', // green
+  '#c084fc', // purple
+];
+
+export const getLevelColor = (level: number) => {
+  return LEVEL_COLORS[level % LEVEL_COLORS.length];
 };
 
 export const calculateLevel = (nestIndex: string) => {
-  return nestIndex ? nestIndex.split('.').length : 0;
+  if (!nestIndex) return 0;
+  // nestIndex like "categories.0.categories.1" — depth = number of numeric segments
+  return nestIndex.split('.').filter((p) => !isNaN(Number(p))).length;
 };
